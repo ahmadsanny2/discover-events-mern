@@ -46,7 +46,7 @@ export default {
             return res.status(500).json({
                 meta: {
                     status: 500,
-                    message: _err.errResponse.errMsg
+                    message: _err?.errResponse?.errmsg || "server error"
                 },
                 data: _err
             })
