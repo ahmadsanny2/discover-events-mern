@@ -4,12 +4,12 @@ import swaggerAutogen from "swagger-autogen";
 const doc = {
     info: {
         version: "1.0.0",
-        title: "Discover Events API",
+        title: "Discover Events MERN API",
         description: "Discover Events API Documentation"
     },
     servers: [
         {
-            url: "http://localhost:3000/api",
+            url: "http://localhost:5000/api",
             description: "Local server"
         },
         {
@@ -38,7 +38,29 @@ const doc = {
             },
             activationRequest: {
                 code: "abcde"
-            }
+            },
+            CreateCategoryRequest: {
+                name: "",
+                description: "",
+                icon: ""
+            },
+            CreateEventRequest: {
+                name: "",
+                banner: "",
+                category: "",
+                description: "",
+                startDate: "yyyy-mm-dd hh:mm:ss",
+                endDate: "yyyy-mm-dd hh:mm:ss",
+                location: {
+                    region: "",
+                    coordinates: [0, 0]
+                },
+                isOnline: false,
+                isFeatured: false
+            },
+            RemoveMediaRequest: {
+                fileUrl: ""
+            },
         }
     }
 }
