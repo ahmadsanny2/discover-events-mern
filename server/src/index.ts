@@ -13,6 +13,13 @@ async function init() {
 
         const PORT = process.env.PORT || 5000;
 
+        app.use("/", (req, res) => {
+            res.status(200).json({
+                message: "Server is running",
+                data: null,
+            });
+        });
+
         app.use("/api", router);
 
         app.listen(PORT, () =>
@@ -23,4 +30,4 @@ async function init() {
     }
 }
 
-init()
+init();
