@@ -121,11 +121,11 @@
         "properties": {
           "identifier": {
             "type": "string",
-            "example": "johndoe"
+            "example": "admin"
           },
           "password": {
             "type": "string",
-            "example": "password"
+            "example": "Admin123"
           }
         },
         "xml": {
