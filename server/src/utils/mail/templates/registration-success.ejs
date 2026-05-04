@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dicover Events MERN - Activation User</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 2px auto;
+            background-color: #ffffff;
+            border: 1px solid #dddddd;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: #4caf50;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .footer {
+            background-color: #f1f1f1;
+            color: #555555;
+            padding: 5px;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 2px;
+            margin: 20px 0;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        @media (max-width:600px) {
+            .container {
+                width: 100%;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Selamat Datang</h1>
+        </div>
+        <div class="content">
+            <p>Halo <%= username %>,</p>
+            <p>Terima kasih telah mendaftar di layanan kami. Berikut adalah informasi akun Anda:</p>
+            <ul>
+                <li><strong>Nama:</strong>
+                    <%= fullName %>
+                </li>
+                <li><strong>Email:</strong>
+                    <%= email %>
+                </li>
+                <li><strong>Tanggal Pendaftaran:</strong>
+                    <%= createdAt %>
+                </li>
+            </ul>
+            <p>Untuk memulai silakan klik tombol di bawah ini:</p>
+            <a href="<%= activationLink %>" class="btn">Aktifkan Akun</a>
+            <p>Jika Anda memiliki pertanyaan, jangan ragu untuk menghubungi kami.</p>
+            <p>Salam hangat, Admin Discover Events MERN</p>
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2026 Discover Events MERN. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+
+</html>
