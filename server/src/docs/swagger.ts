@@ -27,6 +27,16 @@ const doc = {
             LoginRequest: {
                 identifier: "admin",
                 password: "Admin123"
+            },
+            RegisterRequest: {
+                fullName: "Administrator",
+                username: "admin",
+                email: "admin@gmail.com",
+                password: "12345678",
+                confirmPassword: "12345678"
+            },
+            ActivationRequest: {
+                code: "abcde"
             }
         }
     }
