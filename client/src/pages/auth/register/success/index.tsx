@@ -1,9 +1,10 @@
 import AuthLayout from "@/components/layouts/AuthLayout";
+import RegisterSuccess from "@/components/views/RegisterSuccess";
 
 const RegisterSuccessPage = () => {
     return (
         <AuthLayout title="DEM | Register Success">
-            <h1 className="">Register Success</h1>
+            <RegisterSuccess />
         </AuthLayout>
     );
 };
