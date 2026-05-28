@@ -210,6 +210,7 @@ export default {
 
             res.status(200).json({
                 message: "User successfully activated",
+                data: user
             });
         } catch (error) {
             const err = error as unknown as Error;
