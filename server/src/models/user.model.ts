@@ -1,7 +1,9 @@
+import { CLIENT_HOST, EMAIL_SMTP_USER } from "../utils/env";
+import { renderMailHtml, sendMail } from "../utils/mail/mail";
+
+import { ROLES } from "../utils/constant";
 import { encrypt } from "./../utils/encryption";
 import mongoose from "mongoose";
-import { sendMail, renderMailHtml } from "../utils/mail/mail";
-import { CLIENT_HOST, EMAIL_SMTP_USER } from "../utils/env";
 
 export interface User {
     fullName: string;
@@ -39,8 +41,8 @@ const UserSchema = new Schema<User>(
         },
         role: {
             type: Schema.Types.String,
-            enum: ["admin", "user"],
-            default: "user",
+            enum: [ROLES.ADMIN, ROLES.MEMBER],
+            default: ROLES.MEMBER,
         },
         profilePicture: {
             type: Schema.Types.String,
