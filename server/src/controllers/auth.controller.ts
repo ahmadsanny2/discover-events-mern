@@ -1,9 +1,11 @@
-import { Request, Response } from "express";
 import * as Yup from "yup";
+
+import { Request, Response } from "express";
+
+import { IReqUser } from "../utils/interfaces";
 import UserModel from "../models/user.model";
 import { encrypt } from "../utils/encryption";
 import { generateToken } from "../utils/jwt";
-import { IReqUser } from "../middlewares/auth.middleware";
 
 type TRegister = {
     fullName: string;
