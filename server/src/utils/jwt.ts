@@ -4,12 +4,12 @@ import jwt from "jsonwebtoken";
 
 export const generateToken = (user: IUserToken): string => {
     const token = jwt.sign(user, SECRET, {
-        expiresIn: "1h"
-    })
-    return token
+        expiresIn: "1h",
+    });
+    return token;
 };
 
 export const getUserData = (token: string) => {
-    const user = jwt.verify(token, SECRET) as IUserToken
-    return user
+    const user = jwt.verify(token, SECRET) as IUserToken;
+    return user;
 };
