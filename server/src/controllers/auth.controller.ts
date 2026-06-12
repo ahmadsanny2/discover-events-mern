@@ -58,12 +58,12 @@ const registerValidateSchema = Yup.object({
 export default {
     async register(req: Request, res: Response) {
         /**
-            #swagger.tags = ['Auth']
-            #swagger.requestBody = {
-                required: true,
-                schema: {$ref: "#/components/schemas/RegisterRequest"}
-                      }
-                */
+                #swagger.tags = ['Auth']
+                #swagger.requestBody = {
+                    required: true,
+                    schema: {$ref: "#/components/schemas/RegisterRequest"}
+                          }
+                    */
 
         const { fullName, username, email, password, confirmPassword } =
             req.body as unknown as TRegister;
@@ -84,19 +84,19 @@ export default {
                 password,
             });
 
-            response.success(res, result, "Success registration!")
+            response.success(res, result, "Success registration!");
         } catch (error) {
-            response.error(res, error, "Failed registration!")
+            response.error(res, error, "Failed registration!");
         }
     },
     async login(req: Request, res: Response) {
         /**
-             #swagger.tags = ['Auth']
-            #swagger.requestBody = {
-                  required: true,
-                  schema: {$ref: "#/components/schemas/LoginRequest"}
-               }
-         */
+                 #swagger.tags = ['Auth']
+                #swagger.requestBody = {
+                      required: true,
+                      schema: {$ref: "#/components/schemas/LoginRequest"}
+                   }
+             */
 
         const { identifier, password } = req.body as unknown as TLogin;
 
@@ -111,11 +111,11 @@ export default {
                         username: identifier,
                     },
                 ],
-                isActive: true
+                isActive: true,
             });
 
             if (!userByIdentifier) {
-                return response.unauthorized(res, "User not found")
+                return response.unauthorized(res, "User not found");
             }
 
             // Validasi password
@@ -123,7 +123,7 @@ export default {
                 encrypt(password) === userByIdentifier.password;
 
             if (!validatePassword) {
-                return response.unauthorized(res, "User not found")
+                return response.unauthorized(res, "User not found");
             }
 
             const token = generateToken({
@@ -131,39 +131,39 @@ export default {
                 role: userByIdentifier.role,
             });
 
-            response.success(res, token, "Login successfully")
+            response.success(res, token, "Login successfully");
         } catch (error) {
-            response.error(res, error, "Login failed")
+            response.error(res, error, "Login failed");
         }
     },
 
     async me(req: IReqUser, res: Response) {
         /**
-            #swagger.tags = ['Auth']
-            #swagger.security = [{
-                "bearerAuth": []
-            }]
-        */
+                #swagger.tags = ['Auth']
+                #swagger.security = [{
+                    "bearerAuth": []
+                }]
+            */
 
         try {
             const user = req.user;
 
             const result = await UserModel.findById(user?.id);
 
-            response.success(res, result, "Success get user profile")
+            response.success(res, result, "Success get user profile");
         } catch (error) {
-            response.error(res, error, "Failed get user profile")
+            response.error(res, error, "Failed get user profile");
         }
     },
 
     async activation(req: Request, res: Response) {
         /**
-             #swagger.tags = ['Auth']
-             #swagger.requestBody = {
-                required: true,
-                schema: {$ref: '#/components/schemas/ActivationRequest'}     
-             }
-             */
+                 #swagger.tags = ['Auth']
+                 #swagger.requestBody = {
+                    required: true,
+                    schema: {$ref: '#/components/schemas/ActivationRequest'}     
+                 }
+                 */
 
         try {
             const { code } = req.body as { code: string };
@@ -180,9 +180,9 @@ export default {
                 },
             );
 
-            response.success(res, user, "User successfully activated")
+            response.success(res, user, "User successfully activated");
         } catch (error) {
-            response.error(res, error, "User is failed activated")
+            response.error(res, error, "User is failed activated");
         }
     },
 };
