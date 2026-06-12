@@ -28,12 +28,12 @@ const UserSchema = new Schema<User>(
         username: {
             type: Schema.Types.String,
             required: true,
-            unique: true
+            unique: true,
         },
         email: {
             type: Schema.Types.String,
             required: true,
-            unique: true
+            unique: true,
         },
         password: {
             type: Schema.Types.String,
@@ -64,7 +64,7 @@ const UserSchema = new Schema<User>(
 UserSchema.pre("save", function (next) {
     const user = this;
     user.password = encrypt(user.password);
-    user.activationCode = encrypt(user.id)
+    user.activationCode = encrypt(user.id);
 
     next();
 });
@@ -87,12 +87,12 @@ UserSchema.post("save", async function (doc, next) {
             from: EMAIL_SMTP_USER,
             to: user.email,
             subject: "Aktivasi Akun Anda",
-            html: contentMail
-        })
+            html: contentMail,
+        });
     } catch (error) {
-        console.log("Error:", error)
+        console.log("Error:", error);
     } finally {
-        next()
+        next();
     }
 });
 
