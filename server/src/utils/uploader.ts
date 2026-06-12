@@ -29,7 +29,7 @@ const getPublicIdFromFileUrl = (fileUrl: string) => {
         fileNameUsingSubstring.lastIndexOf("."),
     );
 
-    return publicId
+    return publicId;
 };
 
 export default {
@@ -55,5 +55,7 @@ export default {
     async remove(fileUrl: string) {
         const publicId = getPublicIdFromFileUrl(fileUrl);
         const result = await cloudinary.uploader.destroy(publicId);
+
+        return result
     },
 };
