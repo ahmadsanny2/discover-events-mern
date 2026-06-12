@@ -23,7 +23,7 @@ export default {
             } = req.query as unknown as IPaginationQuery;
 
             const query = {};
-            
+
             if (search) {
                 Object.assign(query, {
                     $or: [
@@ -72,24 +72,24 @@ export default {
     },
     async update(req: IReqUser, res: Response) {
         try {
-            const { id } = req.params
+            const { id } = req.params;
 
             const result = await CategoryModel.findByIdAndUpdate(id, req.body, {
-                new: true
-            })
+                new: true,
+            });
 
-            response.success(res, result, "Success updated category")
+            response.success(res, result, "Success updated category");
         } catch (error) {
             response.error(res, error, "Failed update category");
         }
     },
     async remove(req: IReqUser, res: Response) {
         try {
-            const { id } = req.params
+            const { id } = req.params;
 
-            const result = await CategoryModel.findByIdAndDelete(id)
+            const result = await CategoryModel.findByIdAndDelete(id);
 
-            response.success(res, result, "Success remove category")
+            response.success(res, result, "Success remove category");
         } catch (error) {
             response.error(res, error, "Failed remove category");
         }
