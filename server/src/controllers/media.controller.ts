@@ -6,7 +6,7 @@ import uploader from "../utils/uploader";
 export default {
     async single(req: IReqUser, res: Response) {
         if (!req.file) {
-            return response.error(res, null, "File is not exist")
+            return response.error(res, null, "File is not exist");
         }
 
         try {
@@ -14,15 +14,15 @@ export default {
                 req.file as Express.Multer.File,
             );
 
-            response.success(res, result, "Success upload a file")
+            response.success(res, result, "Success upload a file");
         } catch {
-            response.error(res, null, "Failed upload a file")
+            response.error(res, null, "Failed upload a file");
         }
     },
 
     async multiple(req: IReqUser, res: Response) {
         if (!req.files || req.files.length === 0) {
-            return response.error(res, null, "Files are not exist")
+            return response.error(res, null, "Files are not exist");
         }
 
         try {
@@ -30,9 +30,9 @@ export default {
                 req.files as Express.Multer.File[],
             );
 
-            response.success(res, result, "Success upload files")
+            response.success(res, result, "Success upload files");
         } catch {
-            response.error(res, null, "Failed upload files")
+            response.error(res, null, "Failed upload files");
         }
     },
     async remove(req: IReqUser, res: Response) {
@@ -41,9 +41,9 @@ export default {
 
             const result = await uploader.remove(fileUrl);
 
-            response.success(res, result, "Success remove file")
+            response.success(res, result, "Success remove file");
         } catch {
-            response.error(res, null, "Failed remove file")
+            response.error(res, null, "Failed remove file");
         }
     },
 };
