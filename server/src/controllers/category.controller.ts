@@ -23,6 +23,7 @@ export default {
             } = req.query as unknown as IPaginationQuery;
 
             const query = {};
+            
             if (search) {
                 Object.assign(query, {
                     $or: [
