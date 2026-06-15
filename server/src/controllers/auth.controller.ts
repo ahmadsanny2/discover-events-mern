@@ -57,18 +57,10 @@ const registerValidateSchema = Yup.object({
 
 export default {
     async register(req: Request, res: Response) {
-        /**
-                #swagger.tags = ['Auth']
-                #swagger.requestBody = {
-                    required: true,
-                    schema: {$ref: "#/components/schemas/RegisterRequest"}
-                          }
-                    */
-
-        const { fullName, username, email, password, confirmPassword } =
-            req.body as unknown as TRegister;
-
         try {
+            const { fullName, username, email, password, confirmPassword } =
+                req.body as unknown as TRegister;
+                
             await registerValidateSchema.validate({
                 fullName,
                 username,
@@ -90,17 +82,8 @@ export default {
         }
     },
     async login(req: Request, res: Response) {
-        /**
-                 #swagger.tags = ['Auth']
-                #swagger.requestBody = {
-                      required: true,
-                      schema: {$ref: "#/components/schemas/LoginRequest"}
-                   }
-             */
-
-        const { identifier, password } = req.body as unknown as TLogin;
-
         try {
+            const { identifier, password } = req.body as unknown as TLogin;
             // Get data user berdasarkan identifier (username dan email)
             const userByIdentifier = await UserModel.findOne({
                 $or: [
@@ -138,13 +121,6 @@ export default {
     },
 
     async me(req: IReqUser, res: Response) {
-        /**
-                #swagger.tags = ['Auth']
-                #swagger.security = [{
-                    "bearerAuth": []
-                }]
-            */
-
         try {
             const user = req.user;
 
@@ -157,14 +133,6 @@ export default {
     },
 
     async activation(req: Request, res: Response) {
-        /**
-                 #swagger.tags = ['Auth']
-                 #swagger.requestBody = {
-                    required: true,
-                    schema: {$ref: '#/components/schemas/ActivationRequest'}     
-                 }
-                 */
-
         try {
             const { code } = req.body as { code: string };
 
