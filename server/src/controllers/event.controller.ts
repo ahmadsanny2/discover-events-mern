@@ -74,13 +74,13 @@ export default {
 
     async update(req: IReqUser, res: Response) {
         try {
-            const { id } = req.params
+            const { id } = req.params;
 
             const result = await EventModel.findByIdAndUpdate(id, req.body, {
-                new: true
-            })
+                new: true,
+            });
 
-            response.success(res, result, "Success update an event")
+            response.success(res, result, "Success update an event");
         } catch (error) {
             response.error(res, error, "Failed to update an event");
         }
@@ -88,11 +88,11 @@ export default {
 
     async remove(req: IReqUser, res: Response) {
         try {
-            const { id } = req.params
+            const { id } = req.params;
 
-            const result = await EventModel.findByIdAndDelete(id, { new: true })
+            const result = await EventModel.findByIdAndDelete(id, { new: true });
 
-            response.success(res, result, "Success remove an event")
+            response.success(res, result, "Success remove an event");
         } catch (error) {
             response.error(res, error, "Failed to remove an event");
         }
@@ -100,12 +100,11 @@ export default {
 
     async findOneBySlug(req: IReqUser, res: Response) {
         try {
+            const { slug } = req.params;
 
-            const { slug } = req.params
+            const result = await EventModel.findOne({ slug });
 
-            const result = await EventModel.findOne({ slug })
-
-            response.success(res, result, "Success find one by slug an event")
+            response.success(res, result, "Success find one by slug an event");
         } catch (error) {
             response.error(res, error, "Failed to find one by slug an event");
         }
