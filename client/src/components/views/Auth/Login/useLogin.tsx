@@ -51,13 +51,20 @@ const useLogin = () => {
     const { mutate: mutateLogin, isPending: isPendingLogin } = useMutation({
         mutationFn: loginService,
         onError: (error) => {
+            reset({
+                identifier: "",
+                password: "",
+            })
             setToaster({
                 type: "error",
                 message: error.message
             })
         },
         onSuccess: () => {
-            reset();
+            reset({
+                identifier: "",
+                password: "",
+            })
             setToaster({
                 type: "success",
                 message: "Login successfully"
