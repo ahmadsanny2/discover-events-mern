@@ -12,14 +12,13 @@ interface PropTypes {
     isUploading?: boolean;
     isInvalid?: boolean;
     name: string;
-    onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
-    onUpload: (files: FileList) => void;
-    onDelete: () => void;
+
+    onUpload?: (files: FileList) => void;
+    onDelete?: () => void;
     preview?: string;
 }
 
 const InputFile = (props: PropTypes) => {
-    const [uploadedImage, setUploadedImage] = useState<File | null>(null);
     const {
         className,
         errorMessage,
@@ -28,7 +27,7 @@ const InputFile = (props: PropTypes) => {
         isDeleting,
         isInvalid,
         name,
-        onChange,
+
         onUpload,
         onDelete,
         preview,
@@ -90,7 +89,7 @@ const InputFile = (props: PropTypes) => {
                         <div className="mb-2 w-1/2">
                             <Image
                                 fill
-                                src={URL.createObjectURL(preview)}
+                                src={preview}
                                 alt="image"
                                 className="!relative"
                             />
@@ -112,7 +111,7 @@ const InputFile = (props: PropTypes) => {
 
                 {!preview && !isUploading && (
                     <div className="flex flex-col items-center justify-center p-5">
-                        <div className="mb-2 w-1/2">
+                        <div className="mb-2">
                             <CiSaveUp2 className="mb-2 h-10 w-10 text-gray-400" />
                         </div>
                         <p className="text-center text-sm font-semibold text-gray-500">
@@ -134,6 +133,12 @@ const InputFile = (props: PropTypes) => {
                     accept="image/*"
                     id={`dropzone-file-${dropzoneId}`}
                     onChange={handleOnUpload}
+                    disabled={preview !== ""}
+                    onClick={(e) => {
+                        e.currentTarget.value = "";
+                        e.target.dispatchEvent(new Event("change", { bubbles: true }));
+                    }}
+
                 />
             </label>
             {isInvalid && (
