@@ -7,14 +7,14 @@ import {
     DropdownTrigger,
     useDisclosure,
 } from "@nextui-org/react";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import { Key, ReactNode, useCallback, useEffect } from "react";
 import { COLUMN_LIST_CATEGORY } from "./Category.constant";
 import { CiMenuKebab } from "react-icons/ci";
 import useCategory from "./useCategory";
-import InputFile from "@/components/ui/InputFile";
 import AddCategoryModal from "./AddCategoryModal";
+import DeleteCategoryModal from "./DeleteCategoryModal";
+import Image from "next/image";
 
 const Category = () => {
     const { push, isReady, query } = useRouter();
@@ -32,9 +32,13 @@ const Category = () => {
         handleSearch,
         handleClearSearch,
         setURL,
+
+        selectedId,
+        setSelectedId,
     } = useCategory();
 
     const addCategoryModal = useDisclosure();
+    const deleteCategoryModal = useDisclosure();
 
     console.log(dataCategory);
 
@@ -49,10 +53,10 @@ const Category = () => {
             const cellValue = category[columnKey as keyof typeof category];
 
             switch (columnKey) {
-                // case "icon":
-                //     return (
-                //         <Image src={`${cellValue}`} alt="icon" width={100} height={200} />
-                //     );
+                case "icon":
+                    return (
+                        <Image src={`${cellValue}`} alt="icon" width={100} height={200} />
+                    );
                 case "actions":
                     return (
                         <Dropdown>
@@ -68,7 +72,14 @@ const Category = () => {
                                 >
                                     Detail Category
                                 </DropdownItem>
-                                <DropdownItem className="text-danger-500" key="delete-category">
+                                <DropdownItem
+                                    className="text-danger-500"
+                                    key="delete-category"
+                                    onPress={() => {
+                                        setSelectedId(`${category._id}`);
+                                        deleteCategoryModal.onOpen();
+                                    }}
+                                >
                                     Delete Category
                                 </DropdownItem>
                             </DropdownMenu>
@@ -104,6 +115,12 @@ const Category = () => {
             <AddCategoryModal
                 refetchCategory={refetchCategory}
                 {...addCategoryModal}
+            />
+            <DeleteCategoryModal
+                refetchCategory={refetchCategory}
+                selectedId={selectedId}
+                setSelectedId={setSelectedId}
+                {...deleteCategoryModal}
             />
         </section>
     );
