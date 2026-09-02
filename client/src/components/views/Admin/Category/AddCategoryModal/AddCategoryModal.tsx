@@ -38,7 +38,7 @@ const AddCategoryModal = (props: PropTypes) => {
         isPendingMutateUploadFile,
         handleDeleteIcon,
         isPendingMutateDeleteFile,
-        handleOnClose
+        handleOnClose,
     } = useAddCategoryModal();
 
     useEffect(() => {
@@ -48,7 +48,10 @@ const AddCategoryModal = (props: PropTypes) => {
         }
     }, [isSuccessMutateAddCategory]);
 
-    const disabledSubmit = isPendingMutateAddCategory || isPendingMutateUploadFile || isPendingMutateDeleteFile
+    const disabledSubmit =
+        isPendingMutateAddCategory ||
+        isPendingMutateUploadFile ||
+        isPendingMutateDeleteFile;
 
     return (
         <Modal
@@ -62,7 +65,7 @@ const AddCategoryModal = (props: PropTypes) => {
                 <ModalContent className="m-4">
                     <ModalHeader>Add Category</ModalHeader>
                     <ModalBody>
-                        <div className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-2">
                             <p className="text-sm font-bold">Information</p>
                             <Controller
                                 name="name"
@@ -76,6 +79,7 @@ const AddCategoryModal = (props: PropTypes) => {
                                         type="text"
                                         isInvalid={errors.name !== undefined}
                                         errorMessage={errors.name?.message}
+                                        className="mb-2"
                                     />
                                 )}
                             />
@@ -89,6 +93,7 @@ const AddCategoryModal = (props: PropTypes) => {
                                         variant="bordered"
                                         isInvalid={errors.description !== undefined}
                                         errorMessage={errors.description?.message}
+                                        className="mb-2"
                                     />
                                 )}
                             />
